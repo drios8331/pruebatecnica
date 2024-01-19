@@ -30,15 +30,8 @@
   <div class="respuesta"></div>
 
   <!-- navbar -->
-  <nav class="navbar navbar-light bg-secondary">
-    <div class="container-fluid">
-      <form class="d-flex">
-        <button class="btn btn-primary d-flex justify-contenrt-start" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-          Menu Lateral
-        </button>
-      </form>
-    </div>
-  </nav>
+  <div id="navbar"></div>
+
 
   <!-- sidebar -->
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -62,6 +55,7 @@
   </div>
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../../assets/js/menuLateral.js"></script>
+  <script src="../../assets/js/navBar.js"></script>
 </body>
 
 </html>
