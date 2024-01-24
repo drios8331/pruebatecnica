@@ -31,10 +31,6 @@
   <div class="respuesta"></div>
   <div class="wrapper">
 
-    <!-- navbar -->
-    <div id="navbar"></div>
-
-
     <!-- sidebar -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header bg-secondary overflow-hidden" style="height: 10%;">
@@ -53,6 +49,8 @@
     </div>
 
     <div class="content">
+      <!-- navbar -->
+      <div id="navbar"></div>
 
     </div>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
