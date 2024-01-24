@@ -13,7 +13,7 @@ class Configuracion extends Conexion
     {
 
         $listDepartamentos = null;
-        $statement = $this->db->prepare("SELECT `idDepartamento`, `nombre` FROM `tbldepartamentos`");
+        $statement = $this->db->prepare("SELECT `idDepartamento`, `nombre`, estado FROM `tbldepartamentos`");
         $statement->execute();
         while ($consulta = $statement->fetch()) {
             $listDepartamentos[] = $consulta;
@@ -46,12 +46,13 @@ class Configuracion extends Conexion
         }
     }
 
-    public function updateDepartamento($id, $departamento)
+    public function updateDepartamento($id, $departamento, $estado)
     {
 
-        $statement = $this->db->prepare("UPDATE `tbldepartamentos` SET `nombre`=:departamento WHERE `idDepartamento`=:id");
+        $statement = $this->db->prepare("UPDATE `tbldepartamentos` SET `nombre`=:departamento, estado=:estado WHERE `idDepartamento`=:id");
         $statement->bindparam(':id', $id);
         $statement->bindparam(':departamento', $departamento);
+        $statement->bindparam(':estado', $estado);
         if ($statement->execute()) {
             return true;
         } else {
@@ -75,7 +76,7 @@ class Configuracion extends Conexion
     {
 
         $listGeneros = null;
-        $statement = $this->db->prepare("SELECT * FROM `tblGeneros`, estado WHERE `idGenero`=:id");
+        $statement = $this->db->prepare("SELECT * FROM `tblGeneros` WHERE `idGenero`=:id");
         $statement->bindparam(':id', $id);
         $statement->execute();
         while ($consulta = $statement->fetch()) {

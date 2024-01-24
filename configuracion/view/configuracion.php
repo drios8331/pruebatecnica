@@ -1,3 +1,11 @@
+<?php
+require '../Model/ModelConfiguracion.php';
+
+$configuracion = new Configuracion();
+
+$listarGeneros = $configuracion->listGeneros();
+$listarDepartamentos = $configuracion->listDepartamentos();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,23 +66,38 @@
           <div class="card-header">
             <span class="align-middle text-primary fw-bold"><i class="bi bi-flag"></i> Departamentos</span>
           </div>
-          <div class="card-body mh-50">
+          <div class="card-body" style="height: 41vh; max-height: 41vh; overflow-y: auto;">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                  <th class="text-center">id</th>
+                  <th class="text-center">Departamento</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Acción</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <?php
+                  if (empty($listarDepartamentos) != 1) {
+                    foreach ($listarDepartamentos as $key => $value) {
+                  ?>
+                      <td class="text-center"><?php echo $value['idDepartamento'] ?></td>
+                      <td class="text-center"><?php echo $value['nombre'] ?></td>
+                      <td class="text-center"><?php echo $value['estado'] === 1 ? "Activo" : "Inactivo"?></td>
+                      <td class="text-center">
+                        <button class="btn btn-outline-primary btn-sm" id="btn_info_departamento" value="<?php echo $value['idDepartamento'] ?>">
+                          <i class="bi bi-info-square" style="pointer-events: none;"></i>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" id="btn_edit_departamento" value="<?php echo $value['idDepartamento'] ?>">
+                          <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
+                        </button>
+                      </td>
                 </tr>
+            <?php
+                    }
+                  }
+            ?>
               </tbody>
             </table>
           </div>
@@ -90,23 +113,38 @@
           <div class="card-header">
             <span class="align-middle text-primary fw-bold"><i class="bi bi-gender-ambiguous"></i> Generos</span>
           </div>
-          <div class="card-body">
+          <div class="card-body px-5" style="height: 41vh; max-height: 41vh; overflow-y: auto;">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                  <th class="text-center">id</th>
+                  <th class="text-center">Genero</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Acción</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <?php
+                  if (empty($listarGeneros) != 1) {
+                    foreach ($listarGeneros as $key => $value) {
+                  ?>
+                      <td class="text-center"><?php echo $value['idGenero'] ?></td>
+                      <td class="text-center"><?php echo $value['nombre'] ?></td>
+                      <td class="text-center"><?php echo $value['estado'] === 1 ? "Activo" : "Inactivo" ?></td>
+                      <td class="text-center">
+                        <button class="btn btn-outline-primary btn-sm" id="btn_info_genero" value="<?php echo $value['idGenero'] ?>">
+                          <i class="bi bi-info-square" style="pointer-events: none;"></i>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" id="btn_edit_genero" value="<?php echo $value['idGenero'] ?>">
+                          <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
+                        </button>
+                      </td>
                 </tr>
+            <?php
+                    }
+                  }
+            ?>
               </tbody>
             </table>
           </div>
