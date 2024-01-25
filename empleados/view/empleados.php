@@ -1,10 +1,13 @@
 <?php
-  require '../../configuracion/Model/ModelConfiguracion.php';
+require '../../configuracion/Model/ModelConfiguracion.php';
+require '../Model/ModelEmpleados.php';
 
-  $configuracion = new Configuracion();
+$configuracion = new Configuracion();
+$empleados = new Empleados();
 
-  $listarDepartamentos = $configuracion->listDepartamentos();
-  $listarGeneros = $configuracion->listGeneros();
+$listarDepartamentos = $configuracion->listDepartamentos();
+$listarGeneros = $configuracion->listGeneros();
+$listarEmpleados = $empleados->listarEmpleados();
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +40,7 @@
 </head>
 
 <body class="scrolly">
-  <div class="respuesta"></div>
+  <div id="respuesta"></div>
   <div class="wrapper">
 
     <!-- sidebar -->
@@ -70,12 +73,22 @@
             </div>
             <div class="card-body">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nombre" placeholder="Nombres">
-                <label for="nombre">Nombres</label>
+                <input type="number" class="form-control" id="documento" placeholder="Documento de Identidad">
+                <label for="documento">Documento de Identidad</label>
               </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="apellido" placeholder="Apellidos">
-                <label for="apellido">Apellidos</label>
+              <div class="row g-2 mb-3">
+                <div class="col-md">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombres">
+                    <label for="nombre">Nombres</label>
+                  </div>
+                </div>
+                <div class="col-md">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="apellido" placeholder="Apellidos">
+                    <label for="apellido">Apellidos</label>
+                  </div>
+                </div>
               </div>
               <div class="row g-2 mb-3">
                 <div class="col-md">
@@ -95,7 +108,7 @@
                 <div class="col-md">
                   <div class="form-floating">
                     <select class="form-select" id="genero" aria-label="genero">
-                    <?php foreach ($listarGeneros as $key => $value) {
+                      <?php foreach ($listarGeneros as $key => $value) {
                         $id = $value['idGenero'];
                         $genero = $value['nombre'];
                       ?>
@@ -110,8 +123,8 @@
                 <div class="col-md">
                   <div class="form-floating">
                     <select class="form-select" id="departamento" aria-label="departamento">
-                    <?php foreach ($listarDepartamentos as $key => $value) {
-                        $id = $value['id'];
+                      <?php foreach ($listarDepartamentos as $key => $value) {
+                        $id = $value['idDepartamento'];
                         $departamento = $value['nombre'];
                       ?>
                         <option value="<?php echo $id ?>"><?php echo $departamento ?></option>
@@ -130,7 +143,7 @@
             </div>
             <div class="card-footer p-0 m-0">
               <div class="d-grid">
-                <div class="btn btn-primary rounded-top-0">Insertar Empleado</div>
+                <div class="btn btn-primary rounded-top-0" id="insert_empleado">Insertar Empleado</div>
               </div>
             </div>
           </div>
@@ -144,19 +157,38 @@
               <table id="tableEmpleados" class="table table-hover" style="width: 100%;">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>First</th>
-                    <th>Last</th>
-                    <th>Handle</th>
+                    <th class="text-center">id</th>
+                    <th class="text-center">Documento</th>
+                    <th class="text-center">Nombres</th>
+                    <th class="text-center">Apellidos</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Accion</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <?php
+                    if ($listarEmpleados != null) {
+                      foreach ($listarEmpleados as $key => $value) {
+                    ?>
+                        <td class="text-center"><?php echo $value['idEmpleados'] ?></td>
+                        <td class="text-center"><?php echo $value['documento'] ?></td>
+                        <td class="text-center"><?php echo $value['nombres'] ?></td>
+                        <td class="text-center"><?php echo $value['apellidos'] ?></td>
+                        <td class="text-center"><?php echo $value['estado'] ?></td>
+                        <td class="text-center">
+                          <button class="btn btn-outline-primary" id="btn_info_empleado" value="<?php echo $value['idEmpleados'] ?>">
+                            <i class="bi bi-info-square" style="pointer-events: none;"></i>
+                          </button>
+                          <button class="btn btn-outline-primary" id="btn_edit_empleado" value="<?php echo $value['idEmpleados'] ?>">
+                            <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
+                          </button>
+                        </td>
                   </tr>
+              <?php
+                      }
+                    }
+              ?>
                 </tbody>
               </table>
             </div>
@@ -167,6 +199,7 @@
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/menuLateral.js"></script>
     <script src="../../assets/js/navBar.js"></script>
+    <script src="../app/script.js"></script>
 </body>
 
 </html>
