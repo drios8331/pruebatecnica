@@ -15,6 +15,7 @@ $apellido = $_POST['apellido'];
 $comp_apellidos = preg_match($regexp, $apellido);
 $edad = $_POST['edad'];
 $fecha_ingreso = $_POST['fecha_ingreso'];
+$salario = $_POST['salario'];
 $genero = $_POST['genero'];
 $departamento = $_POST['departamento'];
 $comentarios = $_POST['comentarios'];
@@ -24,11 +25,12 @@ $Documento = trim($documento);
 $Nombre = $comp_nombres ? trim($nombre) : "";
 $Apellido = $comp_apellidos ? trim($apellido) : "";
 $Edad = trim($edad);
+$Salario = trim($salario);
 $Comentarios = trim($comentarios);
 
 try {
     if (empty($Documento) != 1 && empty($Nombre) != 1 && empty($Apellido) != 1 && empty($edad) != 1 && empty($fecha_ingreso) != 1 && empty($genero) != 1 && empty($departamento) != 1) {
-        if ($empleado->updateEmpleados($id,$Documento, $Nombre, $Apellido, $edad, $fecha_ingreso, $Comentarios, $genero, $departamento, $estado)) {
+        if ($empleado->updateEmpleados($id,$Documento, $Nombre, $Apellido, $edad, $fecha_ingreso, $Salario, $Comentarios, $genero, $departamento, $estado)) {
             $modal->modalAlerta('Informacion', 'text-primary', 'Informacion modificada con exito.');
         }
     } else {

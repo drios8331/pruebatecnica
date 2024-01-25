@@ -1,4 +1,5 @@
 $(function () {
+    
     $('#insert_empleado').on('click', function (e) {
         if (e.target.id === "insert_empleado") {
             const documento = $("#documento").val();
@@ -6,6 +7,7 @@ $(function () {
             const apellido = $("#apellido").val();
             const edad = $("#edad").val();
             const fecha_ingreso = $("#fecha_ingreso").val();
+            const salario = $("#salario").val();
             const genero = $("#genero").val();
             const departamento = $("#departamento").val();
             const comentarios = $("#comentarios").val();
@@ -16,6 +18,7 @@ $(function () {
                 apellido: apellido,
                 edad: edad,
                 fecha_ingreso: fecha_ingreso,
+                salario: salario,
                 genero: genero,
                 departamento: departamento,
                 comentarios: comentarios,
@@ -52,6 +55,7 @@ $(function () {
             const apellido = $("#apellido").val();
             const edad = $("#edad").val();
             const fecha_ingreso = $("#fecha_ingreso").val();
+            const salario = $("#salario").val();
             const genero = $("#genero").val();
             const departamento = $("#departamento").val();
             const comentarios = $("#comentarios").val();
@@ -64,6 +68,7 @@ $(function () {
                 apellido: apellido,
                 edad: edad,
                 fecha_ingreso: fecha_ingreso,
+                salario: salario,
                 genero: genero,
                 departamento: departamento,
                 comentarios: comentarios,
