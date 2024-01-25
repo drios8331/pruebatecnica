@@ -66,7 +66,7 @@ $listarEmpleados = $empleados->listarEmpleados();
     <!-- inicio contenido -->
     <div class="row p-4">
       <div class="col-12 col-md-6 col-lg-4 col-xl-4">
-        <div class="card">
+        <div class="card" style="height: 63vh; max-height: 63vh; overflow-y: auto;">
           <div class="card-header bg-primary">
             <span class="align-middle text-light fw-bold"><i class="bi bi-people"></i> Empleados</span>
           </div>
@@ -157,8 +157,8 @@ $listarEmpleados = $empleados->listarEmpleados();
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-8 col-xl-8">
-        <div class="card">
+      <div class="col-12 col-md-6 col-lg-8 col-xl-8 h-100">
+        <div class="card" style="height: 63vh; max-height: 63vh; overflow-y: auto;">
           <div class="card-header bg-primary">
             <span class="align-middle text-light fw-bold"><i class="bi bi-list-columns-reverse"></i> Lista de Empleados</span>
           </div>
@@ -194,8 +194,17 @@ $listarEmpleados = $empleados->listarEmpleados();
                         </button>
                       </td>
                 </tr>
-            <?php
+              <?php
                     }
+                  } else {
+              ?>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            <?php
                   }
             ?>
               </tbody>

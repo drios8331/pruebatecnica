@@ -33,6 +33,42 @@ class Empleados extends Conexion
         return $listarEmpleadosByDoc;
     }
 
+    public function listarEmpleadosByDpto()
+    {
+        $listarEmpleadosByDpto = null;
+        $statement = $this->db->prepare("SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, `comentarios`, 
+        `genero_id`, `departamento_id`, E.estado as 'estado', D.nombre as 'departamento' FROM `tblempleados` as E 
+        INNER JOIN tbldepartamentos as D ON D.idDepartamento = E.departamento_id WHERE D.nombre = 'TI';");
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listarEmpleadosByDpto[] = $consulta;
+        }
+        return $listarEmpleadosByDpto;
+    }
+
+    public function listarEmpleadoMayorSalario()
+    {
+        $listarEmpleadoMayorSalario = null;
+        $statement = $this->db->prepare("SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, 
+        MAX(salario), `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados` WHERE 1");
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listarEmpleadoMayorSalario[] = $consulta;
+        }
+        return $listarEmpleadoMayorSalario;
+    }
+
+    public function listarEmpleadosInfSalario()
+    {
+        $listarEmpleadosByDpto = null;
+        $statement = $this->db->prepare("SELECT COUNT(idEmpleados) FROM `tblempleados` WHERE salario < 1500000");
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listarEmpleadosByDpto[] = $consulta;
+        }
+        return $listarEmpleadosByDpto;
+    }
+
     public function listarEmpleadosById($id)
     {
         $listarEmpleadosById = null;

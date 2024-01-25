@@ -1,3 +1,16 @@
+<?php
+require '../../empleados/Model/ModelEmpleados.php';
+require '../../configuracion/Model/ModelConfiguracion.php';
+
+$empleados = new Empleados();
+$configuracion = new Configuracion();
+
+$listarEmpleados = $empleados->listarEmpleadosByDpto();
+$listarDepartamentosGasto = $configuracion->listDepartamentosGastos();
+$empleadoMayorSalario = $empleados->listarEmpleadoMayorSalario();
+$empleadosInferior = $empleados->listarEmpleadosInfSalario();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +40,7 @@
 </head>
 
 <body class="scrolly">
-  <div class="respuesta"></div>
+  <div id="respuesta"></div>
 
   <!-- sidebar -->
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -50,6 +63,111 @@
     <!-- navbar -->
     <div id="navbar"></div>
 
+    <!-- Inicio Contenido -->
+    <div class="row p-4">
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+        <div class="card" style="height: 40vh; max-height: 40vh;">
+          <div class="card-header bg-primary">
+            <span class="align-middle text-light fw-bold"><i class="bi bi-filetype-sql"></i> Consulta SQL 1 - Listado de todos los datos de los empleados del departamento “Ti”</span>
+          </div>
+          <div class="card-body" style="height: 50vh; overflow-y: auto;">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">id</th>
+                  <th class="text-center">documento</th>
+                  <th class="text-center">nombre</th>
+                  <th class="text-center">apellido</th>
+                  <th class="text-center">edad</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <?php
+                  if ($listarEmpleados != null) {
+                    foreach ($listarEmpleados as $key => $value) {
+                  ?>
+                      <td class="text-center"><?php echo $value['idEmpleados'] ?></td>
+                      <td class="text-center"><?php echo $value['documento'] ?></td>
+                      <td class="text-center"><?php echo $value['nombres'] ?></td>
+                      <td class="text-center"><?php echo $value['apellidos'] ?></td>
+                      <td class="text-center"><?php echo $value['edad'] ?></td>
+                      </tr>
+                  <?php
+                    }
+                  }
+                  ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer" style="height: 20vh;">
+            <span class="card-text align-middle">SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, `comentarios`, `genero_id`, `departamento_id`, E.estado as 'estado', D.nombre as 'departamento' FROM `tblempleados` as E INNER JOIN tbldepartamentos as D ON D.idDepartamento = E.departamento_id WHERE D.nombre = 'TI';</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+        <div class="card" style="height: 40vh; max-height: 40vh; overflow-y: auto;">
+          <div class="card-header bg-primary">
+            <span class="align-middle text-light fw-bold"><i class="bi bi-filetype-sql"></i> Consulta SQL 2 - Listados de los 3 departamentos que más gastos producen</span>
+          </div>
+          <div class="card-body" style="height: 50vh; overflow-y: auto;">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">Numero</th>
+                  <th class="text-center">Departamento</th>
+                  <th class="text-center">valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <?php
+                  if ($listarDepartamentosGasto != null) {
+                    foreach ($listarDepartamentosGasto as $key => $value) {
+                  ?>
+                      <td class="text-center"><?php echo $value['idGastos'] ?></td>
+                      <td class="text-center"><?php echo $value['departamento'] ?></td>
+                      <td class="text-center"><?php echo $value['Suma'] ?></td>
+                      </tr>
+                  <?php
+                    }
+                  }
+                  ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer" style="height: 20vh;">
+            <span class="card-text align-middle">SELECT SUM(gastos) as 'Suma', D.nombre as 'departamento' FROM tblgastos as G INNER JOIN tbldepartamentos as D ON D.idDepartamento=G.departamento_id GROUP BY departamento_id ORDER BY SUM(gastos) DESC LIMIT 3</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+        <div class="card" style="height: 40vh; max-height: 40vh; overflow-y: auto;">
+          <div class="card-header bg-primary">
+            <span class="align-middle text-light fw-bold"><i class="bi bi-filetype-sql"></i> Consulta SQL 3 - Listado de datos del empleado con mayor salario</span>
+          </div>
+          <div class="card-body" style="height: 50vh;">
+
+          </div>
+          <div class="card-footer" style="height: 20vh;">
+            <span class="card-text align-middle">SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, MAX(salario), `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados` WHERE 1</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+        <div class="card" style="height: 40vh; max-height: 40vh; overflow-y: auto;">
+          <div class="card-header bg-primary">
+            <span class="align-middle text-light fw-bold"><i class="bi bi-filetype-sql"></i> Consulta SQL 4 - Cantidad de empleados con salarios menor a 1,500.000</span>
+          </div>
+          <div class="card-body text-center" style="height: 50vh;">
+              <span class="fs-1 text-center"><?php echo $empleadosInferior[0]['COUNT(idEmpleados)'] ?></span>
+          </div>
+          <div class="card-footer" style="height: 20vh;">
+            <span class="card-text align-middle">SELECT COUNT(idEmpleados) FROM `tblempleados` WHERE salario < 1500000</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../../assets/js/menuLateral.js"></script>

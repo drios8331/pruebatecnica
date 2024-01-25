@@ -21,6 +21,20 @@ class Configuracion extends Conexion
         return $listDepartamentos;
     }
 
+    public function listDepartamentosGastos()
+    {
+
+        $listDepartamentosGastos = null;
+        $statement = $this->db->prepare("SELECT idGastos, SUM(gastos) as 'Suma', D.nombre as 'departamento' 
+        FROM tblgastos as G INNER JOIN tbldepartamentos as D ON D.idDepartamento=G.departamento_id 
+        GROUP BY departamento_id ORDER BY SUM(gastos) DESC LIMIT 3");
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listDepartamentosGastos[] = $consulta;
+        }
+        return $listDepartamentosGastos;
+    }
+
     public function listDepartamentosById($id)
     {
 

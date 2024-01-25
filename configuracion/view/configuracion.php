@@ -66,8 +66,8 @@ $listarDepartamentos = $configuracion->listDepartamentos();
           <div class="card-header">
             <span class="align-middle text-primary fw-bold"><i class="bi bi-flag"></i> Departamentos</span>
           </div>
-          <div class="card-body" style="height: 41vh; max-height: 41vh; overflow-y: auto;">
-            <table class="table table-hover">
+          <div class="card-body" style="height: 63vh; max-height: 63vh;">
+            <table class="table table-hover" style="width: 100%;" id="tableDepartamentos">
               <thead>
                 <tr>
                   <th class="text-center">id</th>
@@ -84,7 +84,7 @@ $listarDepartamentos = $configuracion->listDepartamentos();
                   ?>
                       <td class="text-center"><?php echo $value['idDepartamento'] ?></td>
                       <td class="text-center"><?php echo $value['nombre'] ?></td>
-                      <td class="text-center"><?php echo $value['estado'] === 1 ? "Activo" : "Inactivo"?></td>
+                      <td class="text-center"><?php echo $value['estado'] === 1 ? "Activo" : "Inactivo" ?></td>
                       <td class="text-center">
                         <button class="btn btn-outline-primary btn-sm" id="btn_info_departamento" value="<?php echo $value['idDepartamento'] ?>">
                           <i class="bi bi-info-square" style="pointer-events: none;"></i>
@@ -94,8 +94,15 @@ $listarDepartamentos = $configuracion->listDepartamentos();
                         </button>
                       </td>
                 </tr>
-            <?php
+              <?php
                     }
+                  } else {
+              ?>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            <?php
                   }
             ?>
               </tbody>
@@ -113,8 +120,8 @@ $listarDepartamentos = $configuracion->listDepartamentos();
           <div class="card-header">
             <span class="align-middle text-primary fw-bold"><i class="bi bi-gender-ambiguous"></i> Generos</span>
           </div>
-          <div class="card-body px-5" style="height: 41vh; max-height: 41vh; overflow-y: auto;">
-            <table class="table table-hover">
+          <div class="card-body" style="height: 63vh; max-height: 63vh; overflow-y: auto;">
+            <table class="table table-hover" style="width: 100%;" id="tableGeneros">
               <thead>
                 <tr>
                   <th class="text-center">id</th>
@@ -141,8 +148,15 @@ $listarDepartamentos = $configuracion->listDepartamentos();
                         </button>
                       </td>
                 </tr>
-            <?php
+              <?php
                     }
+                  } else {
+              ?>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            <?php
                   }
             ?>
               </tbody>
@@ -162,6 +176,8 @@ $listarDepartamentos = $configuracion->listDepartamentos();
   <script src="../../assets/js/menuLateral.js"></script>
   <script src="../../assets/js/navBar.js"></script>
   <script src="../app/script.js"></script>
+  <script src="../app/tableDepartamentos.js"></script>
+  <script src="../app/tableGeneros.js"></script>
 </body>
 
 </html>
