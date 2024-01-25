@@ -1,12 +1,16 @@
 <?php
 require '../../tools/Modal.php';
 require '../Model/ModelEmpleados.php';
+require '../../configuracion/Model/ModelConfiguracion.php';
 
 $modal = new Modal();
 $empleados = new Empleados();
+$configuracion = new Configuracion();
 
 $id = $_POST['id'];
 $listarEmpleados = $empleados->listarEmpleadosById($id);
+$listarGeneros = $configuracion->listGeneros();
+$listarDepartamentos = $configuracion->listDepartamentos();
 $estado = $listarEmpleados[0]['estado'];
 $estadoText = $estado == 1 ? "Activo" : "Inactivo";
 $estadoFalse = $estado == 1 ? 0 : 1;
@@ -50,22 +54,42 @@ $contenidoModal .= "  </div>";
 $contenidoModal .= "  <div class='row g-2 mb-3'>";
 $contenidoModal .= "    <div class='col-md'>";
 $contenidoModal .= "      <div class='form-floating'>";
-$contenidoModal .= "        <select class='form-select' id='genero' aria-label='genero' value='" . $listarEmpleados[0]['genero_id'] . "'>";
+$contenidoModal .= "        <select class='form-select' id='genero' aria-label='genero'>";
+$contenidoModal .= "            <option value='" . $listarEmpleados[0]['genero_id'] . "'>" . $listarEmpleados[0]['genero'] . "</option>";
+$idGeneroEmpleado = $listarEmpleados[0]['genero_id'];
+if ($listarGeneros != null) {
+    foreach ($listarGeneros as $key => $value) {
+        $idGenero = $value['idGenero'];
+        if ($idGenero != $idGeneroEmpleado) {
+            $contenidoModal .= "    <option value='" . $value['idGenero'] . "'>" . $value['nombre'] . "</option>";
+        }
+    }
+}
 $contenidoModal .= "        </select>";
 $contenidoModal .= "        <label for='genero'>Genero</label>";
 $contenidoModal .= "      </div>";
 $contenidoModal .= "    </div>";
 $contenidoModal .= "    <div class='col-md'>";
 $contenidoModal .= "      <div class='form-floating'>";
-$contenidoModal .= "        <select class='form-select' id='departamento' aria-label='departamento' value='" . $listarEmpleados[0]['departamento_id'] . "'>";
+$contenidoModal .= "        <select class='form-select' id='departamento' aria-label='departamento'>";
+$contenidoModal .= "            <option value='" . $listarEmpleados[0]['departamento_id'] . "'>" . $listarEmpleados[0]['departamento'] . "</option>";
+$idDepartamentoEmpleado = $listarEmpleados[0]['departamento_id'];
+if ($listarDepartamentos != null) {
+    foreach ($listarDepartamentos as $key => $value) {
+        $idDepartamento = $value['idDepartamento'];
+        if ($idDepartamento != $idDepartamentoEmpleado) {
+            $contenidoModal .= "    <option value='" . $value['idDepartamento'] . "'>" . $value['nombre'] . "</option>";
+        }
+    }
+}
 $contenidoModal .= "        </select>";
 $contenidoModal .= "        <label for='departamento'>Departamento</label>";
 $contenidoModal .= "      </div>";
 $contenidoModal .= "    </div>";
 $contenidoModal .= "  </div>";
 $contenidoModal .= "  <div class='form-floating mb-3'>";
-$contenidoModal .= "    <textarea class='form-control' type='text' placeholder='Comentarios' id='comentarios' value='" . $listarEmpleados[0]['comentarios'] . "'></textarea>";
-$contenidoModal .= "    <label for='comentarios'>Comentarios</label>";
+$contenidoModal .= "  <input type='text' class='form-control' id='comentarios' value='" . $listarEmpleados[0]['comentarios'] . "' placeholder='Comentarios'>";
+$contenidoModal .= "  <label for='comentarios'>Comentarios</label>";
 $contenidoModal .= "  </div>";
 $contenidoModal .= "<div class='form-floating mb-3'>";
 $contenidoModal .= "  <select class='form-select' id='estadoDepartamento' aria-label='Estado Departamento'>";

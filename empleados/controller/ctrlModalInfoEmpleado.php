@@ -17,8 +17,8 @@ $contenidoModal .= "  <li class='list-group-item'> Apellido: <span>" . $empleado
 $contenidoModal .= "  <li class='list-group-item'> Edad: <span>" . $empleado[0]['edad'] . "</span></li>";
 $contenidoModal .= "  <li class='list-group-item'> Fecha de Ingreso: <span>" . $empleado[0]['fechaDeIngreso'] . "</span></li>";
 $contenidoModal .= "  <li class='list-group-item'> Comentarios: <span>" . $empleado[0]['comentarios'] . "</span></li>";
-$contenidoModal .= "  <li class='list-group-item'> Genero: <span>" . $empleado[0]['genero_id'] . "</span></li>";
-$contenidoModal .= "  <li class='list-group-item'> Departamento: <span>" . $empleado[0]['departamento_id'] . "</span></li>";
+$contenidoModal .= "  <li class='list-group-item'> Genero: <span>" . $empleado[0]['genero'] . "</span></li>";
+$contenidoModal .= "  <li class='list-group-item'> Departamento: <span>" . $empleado[0]['departamento'] . "</span></li>";
 $contenidoModal .= "  <li class='list-group-item'> Estado: <span>" .  $empleado[0]['estado']  . " </span></li>";
 $contenidoModal .= "</ul>";
 
