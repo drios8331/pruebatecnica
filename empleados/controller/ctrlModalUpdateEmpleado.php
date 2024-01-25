@@ -17,12 +17,21 @@ $estadoFalse = $estado == 1 ? 0 : 1;
 $estadoFalseText = $estadoFalse == 1 ? "Activo" : "Inactivo";
 
 
-
-$contenidoModal  = "<div class='form-floating mb-3'>";
-$contenidoModal .= "  <input type='hidden' id='idEmpleado' value='$id'>";
-$contenidoModal .= "  <input type='text' class='form-control' id='documento' value='" . $listarEmpleados[0]['documento'] . "' placeholder='Documento'>";
-$contenidoModal .= "  <label for='documento'>Documento</label>";
-$contenidoModal .= "</div>";
+$contenidoModal = "  <div class='row g-2 mb-3'>";
+$contenidoModal .= "    <div class='col-md'>";
+$contenidoModal .= "        <div class='form-floating'>";
+$contenidoModal .= "            <input type='hidden' id='idEmpleado' value='$id'>";
+$contenidoModal .= "            <input type='text' class='form-control' id='documento' value='" . $listarEmpleados[0]['documento'] . "' placeholder='Documento'>";
+$contenidoModal .= "            <label for='documento'>Documento</label>";
+$contenidoModal .= "        </div>";
+$contenidoModal .= "     </div>";
+$contenidoModal .= "    <div class='col-md'>";
+$contenidoModal .= "        <div class='form-floating'>";
+$contenidoModal .= "            <input type='number' class='form-control' id='salario' value='" . $listarEmpleados[0]['salario'] . "' placeholder='Salario'>";
+$contenidoModal .= "            <label for='salario'>Salario</label>";
+$contenidoModal .= "        </div>";
+$contenidoModal .= "     </div>";
+$contenidoModal .= "  </div>";
 $contenidoModal .= "  <div class='row g-2 mb-3'>";
 $contenidoModal .= "    <div class='col-md'>";
 $contenidoModal .= "      <div class='form-floating'>";

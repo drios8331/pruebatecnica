@@ -110,4 +110,56 @@ class Configuracion extends Conexion
             return false;
         }
     }
+
+    public function listConceptos()
+    {
+
+        $listConceptos = null;
+        $statement = $this->db->prepare("SELECT `idConcepto`, `nombre`, `estado` FROM `tblconceptos`");
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listConceptos[] = $consulta;
+        }
+        return $listConceptos;
+    }
+
+    public function listConceptoById($id)
+    {
+
+        $listConceptoById = null;
+        $statement = $this->db->prepare("SELECT `idConcepto`, `nombre`, `estado` FROM `tblconceptos` WHERE `idConcepto`=:id");
+        $statement->bindparam(':id', $id);
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listConceptoById[] = $consulta;
+        }
+        return $listConceptoById;
+    }
+
+    public function createConcepto($concepto)
+    {
+
+        $statement = $this->db->prepare("INSERT INTO `tblconceptos`(`nombre`) VALUES (:concepto)");
+        $statement->bindparam(':concepto', $concepto);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateConcepto($id, $concepto, $estado)
+    {
+
+        $statement = $this->db->prepare("UPDATE `tblconceptos` SET `nombre`=:concepto, estado=:estado WHERE `idConcepto`=:id");
+        $statement->bindparam(':id', $id);
+        $statement->bindparam(':concepto', $concepto);
+        $statement->bindparam(':estado', $estado);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

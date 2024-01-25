@@ -13,7 +13,7 @@ class Empleados extends Conexion
     {
 
         $listarEmpleados = null;
-        $statement = $this->db->prepare("SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados`");
+        $statement = $this->db->prepare("SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, `salario`, `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados`");
         $statement->execute();
         while ($consulta = $statement->fetch()) {
             $listarEmpleados[] = $consulta;
@@ -24,7 +24,7 @@ class Empleados extends Conexion
     public function listarEmpleadosByDoc($documento)
     {
         $listarEmpleadosByDoc = null;
-        $statement = $this->db->prepare("SELECT `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados` WHERE `documento`=:documento");
+        $statement = $this->db->prepare("SELECT `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, `salario`, `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados` WHERE `documento`=:documento");
         $statement->bindparam(':documento', $documento);
         $statement->execute();
         while ($consulta = $statement->fetch()) {
@@ -37,7 +37,7 @@ class Empleados extends Conexion
     {
         $listarEmpleadosById = null;
         $statement = $this->db->prepare("SELECT E.idEmpleados as 'idEmpleados', E.documento as 'documento', E.nombres as 'nombres', 
-        E.apellidos as 'apellidos', E.edad as 'edad', E.fechaDeIngreso as 'fechaDeIngreso', E.comentarios as 'comentarios', 
+        E.apellidos as 'apellidos', E.edad as 'edad', E.fechaDeIngreso as 'fechaDeIngreso', E.salario as 'salario', E.comentarios as 'comentarios', 
         G.idGenero as 'genero_id', G.nombre as 'genero', D.idDepartamento as 'departamento_id', D.nombre as 'departamento', 
         E.estado as 'estado' FROM `tblempleados` as E INNER JOIN tblgeneros as G ON G.idGenero=E.genero_id 
         INNER JOIN tbldepartamentos as D ON D.idDepartamento=E.departamento_id WHERE `idEmpleados`=:id; ");
@@ -49,16 +49,17 @@ class Empleados extends Conexion
         return $listarEmpleadosById;
     }
 
-    public function createEmpleados($documento, $nombre, $apellido, $edad, $fIngreso, $comentarios, $genero, $departamento, $estado)
+    public function createEmpleados($documento, $nombre, $apellido, $edad, $fIngreso, $salario, $comentarios, $genero, $departamento, $estado)
     {
         $statement = $this->db->prepare("INSERT INTO `tblempleados`(documento, `nombres`, `apellidos`, edad,
-        `fechaDeIngreso`, `comentarios`, `genero_id`, `departamento_id`, `estado`) 
-        VALUES (:documento,:nombre,:apellido,:edad,:fIngreso,:comentarios,:genero,:departamento,:estado)");
+        `fechaDeIngreso`, `salario`, `comentarios`, `genero_id`, `departamento_id`, `estado`) 
+        VALUES (:documento,:nombre,:apellido,:edad,:fIngreso,:salario,:comentarios,:genero,:departamento,:estado)");
         $statement->bindparam(':documento', $documento);
         $statement->bindparam(':nombre', $nombre);
         $statement->bindparam(':apellido', $apellido);
         $statement->bindparam(':edad', $edad);
         $statement->bindparam(':fIngreso', $fIngreso);
+        $statement->bindparam(':salario', $salario);
         $statement->bindparam(':comentarios', $comentarios);
         $statement->bindparam(':genero', $genero);
         $statement->bindparam(':departamento', $departamento);
@@ -70,10 +71,10 @@ class Empleados extends Conexion
         }
     }
 
-    public function updateEmpleados($id, $documento, $nombre, $apellido, $edad, $fIngreso, $comentarios, $genero, $departamento, $estado)
+    public function updateEmpleados($id, $documento, $nombre, $apellido, $edad, $fIngreso, $salario, $comentarios, $genero, $departamento, $estado)
     {
         $statement = $this->db->prepare("UPDATE `tblempleados` SET `documento`=:documento,`nombres`=:nombre,`apellidos`=:apellido,
-        `edad`=:edad,`fechaDeIngreso`=:fIngreso,`comentarios`=:comentarios,`genero_id`=:genero,`departamento_id`=:departamento,`estado`=:estado 
+        `edad`=:edad,`fechaDeIngreso`=:fIngreso, salario=:salario,`comentarios`=:comentarios,`genero_id`=:genero,`departamento_id`=:departamento,`estado`=:estado 
         WHERE `idEmpleados`=:id");
         $statement->bindparam(':id', $id);
         $statement->bindparam(':documento', $documento);
@@ -82,6 +83,7 @@ class Empleados extends Conexion
         $statement->bindparam(':edad', $edad);
         $statement->bindparam(':fIngreso', $fIngreso);
         $statement->bindparam(':comentarios', $comentarios);
+        $statement->bindparam(':salario', $salario);
         $statement->bindparam(':genero', $genero);
         $statement->bindparam(':departamento', $departamento);
         $statement->bindparam(':estado', $estado);

@@ -16,6 +16,7 @@ $contenidoModal .= "  <li class='list-group-item'> Nombre: <span>" . $empleado[0
 $contenidoModal .= "  <li class='list-group-item'> Apellido: <span>" . $empleado[0]['apellidos'] . "</span></li>";
 $contenidoModal .= "  <li class='list-group-item'> Edad: <span>" . $empleado[0]['edad'] . "</span></li>";
 $contenidoModal .= "  <li class='list-group-item'> Fecha de Ingreso: <span>" . $empleado[0]['fechaDeIngreso'] . "</span></li>";
+$contenidoModal .= "  <li class='list-group-item'> Salario: <span>" . $empleado[0]['salario'] . "</span></li>";
 $contenidoModal .= "  <li class='list-group-item'> Comentarios: <span>" . $empleado[0]['comentarios'] . "</span></li>";
 $contenidoModal .= "  <li class='list-group-item'> Genero: <span>" . $empleado[0]['genero'] . "</span></li>";
 $contenidoModal .= "  <li class='list-group-item'> Departamento: <span>" . $empleado[0]['departamento'] . "</span></li>";

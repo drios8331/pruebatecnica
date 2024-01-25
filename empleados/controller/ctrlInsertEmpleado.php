@@ -18,14 +18,17 @@ $comp_apellidos = preg_match($regexp, $apellido);
 $Apellido = $comp_apellidos ? trim($apellido) : "";
 $edad = $_POST['edad'];
 $fecha_ingreso = $_POST['fecha_ingreso'];
+$salario = $_POST['salario'];
+$Salario = trim($salario);
 $genero = $_POST['genero'];
 $departamento = $_POST['departamento'];
 $comentarios = $_POST['comentarios'];
 $Comentarios = trim($comentarios);
 $estado = 1;
+echo $salario;
 try {
         if (empty($Documento) != 1 && empty($Nombre) != 1 && empty($Apellido) != 1 && empty($edad) != 1 && empty($fecha_ingreso) != 1 && empty($genero) != 1 && empty($departamento) != 1) {
-            if ($empleado->createEmpleados($Documento, $Nombre, $Apellido, $edad, $fecha_ingreso, $Comentarios, $genero, $departamento, $estado)) {
+            if ($empleado->createEmpleados($Documento, $Nombre, $Apellido, $edad, $fecha_ingreso,$Salario, $Comentarios, $genero, $departamento, $estado)) {
                 $modal->modalAlerta('Informacion', 'text-primary', 'Informacion insertada con exito.');
             }
         } else {
