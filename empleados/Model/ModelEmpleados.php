@@ -50,7 +50,7 @@ class Empleados extends Conexion
     {
         $listarEmpleadoMayorSalario = null;
         $statement = $this->db->prepare("SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, 
-        MAX(salario), `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados` WHERE 1");
+        MAX(salario) as 'salario', `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados` WHERE 1");
         $statement->execute();
         while ($consulta = $statement->fetch()) {
             $listarEmpleadoMayorSalario[] = $consulta;

@@ -39,16 +39,18 @@ $empleadosInferior = $empleados->listarEmpleadosInfSalario();
   <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
-<body class="scrolly">
+<body class="scrolly" style="margin: 0;">
   <div id="respuesta"></div>
 
   <!-- sidebar -->
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header bg-secondary overflow-hidden" style="height: 10%;">
-      <img src="../../assets/images/logo.png" class="rounded-5 float-start d-flex ms-3" width="60" alt="Logo">
-      <p class="">
-      <h3 class="offcanvas-title text-light" id="offcanvasExampleLabel"><b>Menu Lateral</b></h3>
-      </p>
+  <div class="offcanvas offcanvas-start bg-primary" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header bg-secondary overflow-hidden p-0 m-0" style="height: 5rem;">
+      <div class="h-100 p-1 m-1 d-flex justify-content-center align-items-center" style="height: 100%;">
+        <img src="../../assets/images/logo.png" class="rounded-5 float-start p-1" width="60" alt="Logo">
+      </div>
+      <div class="w-100 text-center">
+        <h3 class="offcanvas-title text-light" id="offcanvasExampleLabel"><b>Menu Lateral</b></h3>
+      </div>
     </div>
     <div class="offcanvas-body p-0">
       <div id="menuLateral">
@@ -92,16 +94,18 @@ $empleadosInferior = $empleados->listarEmpleadosInfSalario();
                       <td class="text-center"><?php echo $value['nombres'] ?></td>
                       <td class="text-center"><?php echo $value['apellidos'] ?></td>
                       <td class="text-center"><?php echo $value['edad'] ?></td>
-                      </tr>
-                  <?php
+                </tr>
+            <?php
                     }
                   }
-                  ?>
+            ?>
               </tbody>
             </table>
           </div>
-          <div class="card-footer" style="height: 20vh;">
-            <span class="card-text align-middle">SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, `comentarios`, `genero_id`, `departamento_id`, E.estado as 'estado', D.nombre as 'departamento' FROM `tblempleados` as E INNER JOIN tbldepartamentos as D ON D.idDepartamento = E.departamento_id WHERE D.nombre = 'TI';</span>
+          <div class="card-footer bg-primary" style="height: 20vh;">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <span class="card-text text-center text-light">SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, `comentarios`, `genero_id`, `departamento_id`, E.estado as 'estado', D.nombre as 'departamento' FROM `tblempleados` as E INNER JOIN tbldepartamentos as D ON D.idDepartamento = E.departamento_id WHERE D.nombre = 'TI';</span>
+            </div>
           </div>
         </div>
       </div>
@@ -111,7 +115,7 @@ $empleadosInferior = $empleados->listarEmpleadosInfSalario();
             <span class="align-middle text-light fw-bold"><i class="bi bi-filetype-sql"></i> Consulta SQL 2 - Listados de los 3 departamentos que más gastos producen</span>
           </div>
           <div class="card-body" style="height: 50vh; overflow-y: auto;">
-          <table class="table table-hover">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th class="text-center">Numero</th>
@@ -128,16 +132,18 @@ $empleadosInferior = $empleados->listarEmpleadosInfSalario();
                       <td class="text-center"><?php echo $value['idGastos'] ?></td>
                       <td class="text-center"><?php echo $value['departamento'] ?></td>
                       <td class="text-center"><?php echo $value['Suma'] ?></td>
-                      </tr>
-                  <?php
+                </tr>
+            <?php
                     }
                   }
-                  ?>
+            ?>
               </tbody>
             </table>
           </div>
-          <div class="card-footer" style="height: 20vh;">
-            <span class="card-text align-middle">SELECT SUM(gastos) as 'Suma', D.nombre as 'departamento' FROM tblgastos as G INNER JOIN tbldepartamentos as D ON D.idDepartamento=G.departamento_id GROUP BY departamento_id ORDER BY SUM(gastos) DESC LIMIT 3</span>
+          <div class="card-footer bg-primary" style="height: 20vh;">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <span class="card-text text-center text-light">SELECT SUM(gastos) as 'Suma', D.nombre as 'departamento' FROM tblgastos as G INNER JOIN tbldepartamentos as D ON D.idDepartamento=G.departamento_id GROUP BY departamento_id ORDER BY SUM(gastos) DESC LIMIT 3</span>
+            </div>
           </div>
         </div>
       </div>
@@ -147,10 +153,61 @@ $empleadosInferior = $empleados->listarEmpleadosInfSalario();
             <span class="align-middle text-light fw-bold"><i class="bi bi-filetype-sql"></i> Consulta SQL 3 - Listado de datos del empleado con mayor salario</span>
           </div>
           <div class="card-body" style="height: 50vh;">
-
+            <div class="row">
+              <div class="col-md">
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Id</div>
+                    <span><?php echo $empleadoMayorSalario[0]['idEmpleados'] ?></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Documento</div>
+                    <span><?php echo $empleadoMayorSalario[0]['documento'] ?></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Nombre</div>
+                    <span><?php echo $empleadoMayorSalario[0]['nombres'] ?></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Apellido</div>
+                    <span><?php echo $empleadoMayorSalario[0]['apellidos'] ?></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Edad</div>
+                    <span><?php echo $empleadoMayorSalario[0]['edad'] ?></span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md">
+              <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Fecha de Ingreso</div>
+                    <span><?php echo $empleadoMayorSalario[0]['fechaDeIngreso'] ?></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Genero</div>
+                    <span><?php echo $empleadoMayorSalario[0]['genero_id'] ?></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Salario</div>
+                    <span><?php echo $empleadoMayorSalario[0]['salario'] ?></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Departamento</div>
+                    <span><?php echo $empleadoMayorSalario[0]['departamento_id'] ?></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">Comentarios</div>
+                    <span><?php echo $empleadoMayorSalario[0]['comentarios'] ?></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="card-footer" style="height: 20vh;">
-            <span class="card-text align-middle">SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, MAX(salario), `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados` WHERE 1</span>
+          <div class="card-footer bg-primary" style="height: 20vh;">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <span class="card-text text-center text-light">SELECT `idEmpleados`, `documento`, `nombres`, `apellidos`, `edad`, `fechaDeIngreso`, MAX(salario), `comentarios`, `genero_id`, `departamento_id`, `estado` FROM `tblempleados` WHERE 1</span>
+            </div>
           </div>
         </div>
       </div>
@@ -160,10 +217,14 @@ $empleadosInferior = $empleados->listarEmpleadosInfSalario();
             <span class="align-middle text-light fw-bold"><i class="bi bi-filetype-sql"></i> Consulta SQL 4 - Cantidad de empleados con salarios menor a 1,500.000</span>
           </div>
           <div class="card-body text-center" style="height: 50vh;">
-              <span class="fs-1 text-center"><?php echo $empleadosInferior[0]['COUNT(idEmpleados)'] ?></span>
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <span class="bg-primary  px-5 pb-2 pt-0 rounded-circle text-center text-light" style="font-size: 100px;"><?php echo $empleadosInferior[0]['COUNT(idEmpleados)'] ?></span>
+            </div>
           </div>
-          <div class="card-footer" style="height: 20vh;">
-            <span class="card-text align-middle">SELECT COUNT(idEmpleados) FROM `tblempleados` WHERE salario < 1500000</span>
+          <div class="card-footer bg-primary " style="height: 20vh;">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <span class="card-text text-light">SELECT COUNT(idEmpleados) FROM `tblempleados` WHERE salario < 1500000</span>
+            </div>
           </div>
         </div>
       </div>
