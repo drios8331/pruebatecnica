@@ -43,13 +43,13 @@ $empleadosInferior = $empleados->listarEmpleadosInfSalario();
   <div id="respuesta"></div>
 
   <!-- sidebar -->
-  <div class="offcanvas offcanvas-start bg-primary" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas offcanvas-start bg-primary" style="width: 30vh;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header bg-secondary overflow-hidden p-0 m-0" style="height: 5rem;">
       <div class="h-100 p-1 m-1 d-flex justify-content-center align-items-center" style="height: 100%;">
         <img src="../../assets/images/logo.png" class="rounded-5 float-start p-1" width="60" alt="Logo">
       </div>
-      <div class="w-100 text-center">
-        <h3 class="offcanvas-title text-light" id="offcanvasExampleLabel"><b>Menu Lateral</b></h3>
+      <div class="w-100">
+        <h5 class="offcanvas-title text-light" id="offcanvasExampleLabel"><b>Menu Lateral</b></h5>
       </div>
     </div>
     <div class="offcanvas-body p-0">

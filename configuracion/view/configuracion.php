@@ -39,7 +39,7 @@ $listarDepartamentos = $configuracion->listDepartamentos();
   <div id="respuesta"></div>
 
   <!-- sidebar -->
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas offcanvas-start" style="width: 30vh;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header bg-secondary overflow-hidden p-0 m-0" style="height: 5rem;">
       <div class="h-100 p-1 m-1 d-flex justify-content-center align-items-center" style="height: 100%;">
         <img src="../../assets/images/logo.png" class="rounded-5 float-start p-1" width="60" alt="Logo">
@@ -63,12 +63,12 @@ $listarDepartamentos = $configuracion->listDepartamentos();
 
     <!-- Inicio contenido -->
     <div class="row p-4">
-      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
         <div class="card">
           <div class="card-header">
             <span class="align-middle text-primary fw-bold"><i class="bi bi-flag"></i> Departamentos</span>
           </div>
-          <div class="card-body" style="height: 63vh; max-height: 63vh;">
+          <div class="card-body" style="height: 33vh; max-height: 33vh; overflow-y: auto;">
             <table class="table table-hover" style="width: 100%;" id="tableDepartamentos">
               <thead>
                 <tr>
@@ -117,17 +117,125 @@ $listarDepartamentos = $configuracion->listDepartamentos();
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
         <div class="card mh-50">
           <div class="card-header">
             <span class="align-middle text-primary fw-bold"><i class="bi bi-gender-ambiguous"></i> Generos</span>
           </div>
-          <div class="card-body" style="height: 63vh; max-height: 63vh; overflow-y: auto;">
+          <div class="card-body" style="height: 33vh; max-height: 33vh; overflow-y: auto;">
             <table class="table table-hover" style="width: 100%;" id="tableGeneros">
               <thead>
                 <tr>
                   <th class="text-center">id</th>
                   <th class="text-center">Genero</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <?php
+                  if (empty($listarGeneros) != 1) {
+                    foreach ($listarGeneros as $key => $value) {
+                  ?>
+                      <td class="text-center"><?php echo $value['idGenero'] ?></td>
+                      <td class="text-center"><?php echo $value['nombre'] ?></td>
+                      <td class="text-center"><?php echo $value['estado'] === 1 ? "Activo" : "Inactivo" ?></td>
+                      <td class="text-center">
+                        <button class="btn btn-outline-primary btn-sm" id="btn_info_genero" value="<?php echo $value['idGenero'] ?>">
+                          <i class="bi bi-info-square" style="pointer-events: none;"></i>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" id="btn_edit_genero" value="<?php echo $value['idGenero'] ?>">
+                          <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
+                        </button>
+                      </td>
+                </tr>
+              <?php
+                    }
+                  } else {
+              ?>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            <?php
+                  }
+            ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer p-0 m-0">
+            <div class="d-grid">
+              <div class="btn btn-primary rounded-0" id="btn_insert_genero">Insertar Genero</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+        <div class="card">
+          <div class="card-header">
+            <span class="align-middle text-primary fw-bold"><i class="bi bi-gender-ambiguous"></i> Conceptos</span>
+          </div>
+          <div class="card-body" style="height: 33vh; max-height: 33vh; overflow-y: auto;">
+            <table class="table table-hover" style="width: 100%;" id="tableConcepto">
+              <thead>
+                <tr>
+                  <th class="text-center">id</th>
+                  <th class="text-center">Concepto</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <?php
+                  if (empty($listarGeneros) != 1) {
+                    foreach ($listarGeneros as $key => $value) {
+                  ?>
+                      <td class="text-center"><?php echo $value['idGenero'] ?></td>
+                      <td class="text-center"><?php echo $value['nombre'] ?></td>
+                      <td class="text-center"><?php echo $value['estado'] === 1 ? "Activo" : "Inactivo" ?></td>
+                      <td class="text-center">
+                        <button class="btn btn-outline-primary btn-sm" id="btn_info_genero" value="<?php echo $value['idGenero'] ?>">
+                          <i class="bi bi-info-square" style="pointer-events: none;"></i>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" id="btn_edit_genero" value="<?php echo $value['idGenero'] ?>">
+                          <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
+                        </button>
+                      </td>
+                </tr>
+              <?php
+                    }
+                  } else {
+              ?>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            <?php
+                  }
+            ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer p-0 m-0">
+            <div class="d-grid">
+              <div class="btn btn-primary rounded-0" id="btn_insert_genero">Insertar Genero</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <span class="align-middle text-primary fw-bold"><i class="bi bi-gender-ambiguous"></i> Generos</span>
+          </div>
+          <div class="card-body" style="height: 33vh; max-height: 33vh; overflow-y: auto;">
+            <table class="table table-hover" style="width: 100%;" id="tableRol">
+              <thead>
+                <tr>
+                  <th class="text-center">id</th>
+                  <th class="text-center">Rol</th>
                   <th class="text-center">Estado</th>
                   <th class="text-center">Acción</th>
                 </tr>
@@ -180,6 +288,8 @@ $listarDepartamentos = $configuracion->listDepartamentos();
   <script src="../app/script.js"></script>
   <script src="../app/tableDepartamentos.js"></script>
   <script src="../app/tableGeneros.js"></script>
+  <script src="../app/tableConcepto.js"></script>
+  <script src="../app/tableRol.js"></script>
 </body>
 
 </html>
