@@ -176,4 +176,55 @@ class Configuracion extends Conexion
         }
     }
 
+    public function listRoles()
+    {
+
+        $listRoles = null;
+        $statement = $this->db->prepare("SELECT `idRol`, `nombre`, `estado` FROM `tblroles`");
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listRoles[] = $consulta;
+        }
+        return $listRoles;
+    }
+
+    public function listRolesById($id)
+    {
+
+        $listRolesById = null;
+        $statement = $this->db->prepare("SELECT `idRol`, `nombre`, `estado` FROM `tblroles` WHERE `idRol`=:id");
+        $statement->bindparam(':id', $id);
+        $statement->execute();
+        while ($consulta = $statement->fetch()) {
+            $listRolesById[] = $consulta;
+        }
+        return $listRolesById;
+    }
+
+    public function createRol($rol)
+    {
+
+        $statement = $this->db->prepare("INSERT INTO `tblroles`(`nombre`) VALUES (:rol)");
+        $statement->bindparam(':rol', $rol);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateRol($id, $rol, $estado)
+    {
+
+        $statement = $this->db->prepare("UPDATE `tblroles` SET `nombre`=:rol, estado=:estado WHERE `idRol`=:id");
+        $statement->bindparam(':id', $id);
+        $statement->bindparam(':rol', $rol);
+        $statement->bindparam(':estado', $estado);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
