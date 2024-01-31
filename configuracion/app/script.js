@@ -39,7 +39,7 @@ $(function () {
                 $("#respuesta").html(response);
             }
             )
-        }else if (e.target.id === "btn_update_departamento") {
+        } else if (e.target.id === "btn_update_departamento") {
             id = $("#idDepartamento").val();
             departamento = $("#departamento").val();
             estado = $("#estadoDepartamento").val();
@@ -94,7 +94,7 @@ $(function () {
                 $("#respuesta").html(response);
             }
             )
-        }else if (e.target.id === "btn_update_genero") {
+        } else if (e.target.id === "btn_update_genero") {
             id = $("#idGenero").val();
             genero = $("#genero").val();
             estado = $("#estadoGenero").val();
@@ -106,6 +106,28 @@ $(function () {
             }, function (response) {
                 $("#respuesta").html(response);
             }
+            );
+        }
+    });
+
+    $('#btn_insert_concepto').on('click', function (e) {
+        if (e.target.id === 'btn_insert_concepto') {
+            $.post(
+                '../controller/ctrlModalInsertConcepto.php',{},
+                function (response) {
+                    $("#respuesta").html(response);
+                }
+            )
+        }
+    })
+
+    $('#btn_insert_rol').on('click', function (e) {
+        if (e.target.id === 'btn_insert_rol') {
+            $.post(
+                '../controller/ctrlModalInsertRol.php',{},
+                function (response) {
+                    $("#respuesta").html(response);
+                }
             )
         }
     })

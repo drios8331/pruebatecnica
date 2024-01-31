@@ -1,3 +1,10 @@
+<?php
+    require '../Model/ModelUsuarios.php';
+
+    $usuarios = new Usuarios();
+
+    $listarUsuarios = $usuarios->listarUsuarios();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,7 +115,7 @@
                     </div>
                     <div class="card-footer p-0 m-0">
                         <div class="d-grid">
-                            <div class="btn btn-primary rounded-top-0" id="insert_empleado">Insertar Empleado</div>
+                            <div class="btn btn-primary rounded-top-0" id="insert_usuario">Insertar Empleado</div>
                         </div>
                     </div>
                 </div>
@@ -119,14 +126,13 @@
                         <span class="align-middle text-light fw-bold"><i class="bi bi-list-columns-reverse"></i> Lista de Empleados</span>
                     </div>
                     <div class="card-body">
-                        <table id="tableEmpleados" class="table table-hover" style="width: 100%;">
+                        <table id="tableUsuarios" class="table table-hover" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th class="text-center">id</th>
                                     <th class="text-center">Documento</th>
                                     <th class="text-center">Nombres</th>
                                     <th class="text-center">Usuario</th>
-                                    <th class="text-center">Password</th>
                                     <th class="text-center">Email</th>
                                     <th class="text-center">Rol</th>
                                     <th class="text-center">Estado</th>
@@ -136,19 +142,21 @@
                             <tbody>
                                 <tr>
                                     <?php
-                                    if ($listarEmpleados != null) {
-                                        foreach ($listarEmpleados as $key => $value) {
+                                    if ($listarUsuarios != null) {
+                                        foreach ($listarUsuarios as $key => $value) {
                                     ?>
-                                            <td class="text-center"><?php echo $value['idEmpleados'] ?></td>
-                                            <td class="text-center"><?php echo $value['documento'] ?></td>
-                                            <td class="text-center"><?php echo $value['nombres'] ?></td>
-                                            <td class="text-center"><?php echo $value['apellidos'] ?></td>
-                                            <td class="text-center"><?php echo $value['estado'] ?></td>
+                                            <td class="text-center"><?php echo $value['idUsuario'] ?></td>
+                                            <td class="text-center"><?php echo $value['identificacion'] ?></td>
+                                            <td class="text-center"><?php echo $value['nombre'] ?></td>
+                                            <td class="text-center"><?php echo $value['usuario'] ?></td>
+                                            <td class="text-center"><?php echo $value['email'] ?></td>
+                                            <td class="text-center"><?php echo $value['rol_id'] ?></td>
+                                            <td class="text-center"><?php echo $value['estado'] == 1 ? "Activo" : "Inactivo" ?></td>
                                             <td class="text-center">
-                                                <button class="btn btn-outline-primary" id="btn_info_empleado" value="<?php echo $value['idEmpleados'] ?>">
+                                                <button class="btn btn-outline-primary" id="btn_info_usuario" value="<?php echo $value['idUsuario'] ?>">
                                                     <i class="bi bi-info-square" style="pointer-events: none;"></i>
                                                 </button>
-                                                <button class="btn btn-outline-primary" id="btn_edit_empleado" value="<?php echo $value['idEmpleados'] ?>">
+                                                <button class="btn btn-outline-primary" id="btn_edit_usuario" value="<?php echo $value['idUsuario'] ?>">
                                                     <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
                                                 </button>
                                             </td>
@@ -157,6 +165,8 @@
                                         }
                                     } else {
                             ?>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
@@ -176,6 +186,7 @@
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/menuLateral.js"></script>
     <script src="../../assets/js/navBar.js"></script>
+    <script src="../app/tableUsuarios.js"></script>
 </body>
 
 </html>

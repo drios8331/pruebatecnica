@@ -5,6 +5,8 @@ $configuracion = new Configuracion();
 
 $listarGeneros = $configuracion->listGeneros();
 $listarDepartamentos = $configuracion->listDepartamentos();
+$listarConceptos = $configuracion->listConceptos();
+$listarRoles = $configuracion->listRoles();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -189,17 +191,17 @@ $listarDepartamentos = $configuracion->listDepartamentos();
               <tbody>
                 <tr>
                   <?php
-                  if (empty($listarGeneros) != 1) {
-                    foreach ($listarGeneros as $key => $value) {
+                  if (empty($listarConceptos) != 1) {
+                    foreach ($listarConceptos as $key => $value) {
                   ?>
-                      <td class="text-center"><?php echo $value['idGenero'] ?></td>
+                      <td class="text-center"><?php echo $value['idConcepto'] ?></td>
                       <td class="text-center"><?php echo $value['nombre'] ?></td>
                       <td class="text-center"><?php echo $value['estado'] === 1 ? "Activo" : "Inactivo" ?></td>
                       <td class="text-center">
-                        <button class="btn btn-outline-primary btn-sm" id="btn_info_genero" value="<?php echo $value['idGenero'] ?>">
+                        <button class="btn btn-outline-primary btn-sm" id="btn_info_concepto" value="<?php echo $value['idConcepto'] ?>">
                           <i class="bi bi-info-square" style="pointer-events: none;"></i>
                         </button>
-                        <button class="btn btn-outline-primary btn-sm" id="btn_edit_genero" value="<?php echo $value['idGenero'] ?>">
+                        <button class="btn btn-outline-primary btn-sm" id="btn_edit_concepto" value="<?php echo $value['idConcepto'] ?>">
                           <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
                         </button>
                       </td>
@@ -220,7 +222,7 @@ $listarDepartamentos = $configuracion->listDepartamentos();
           </div>
           <div class="card-footer p-0 m-0">
             <div class="d-grid">
-              <div class="btn btn-primary rounded-0" id="btn_insert_genero">Insertar Genero</div>
+              <div class="btn btn-primary rounded-0" id="btn_insert_concepto">Insertar Concepto</div>
             </div>
           </div>
         </div>
@@ -228,7 +230,7 @@ $listarDepartamentos = $configuracion->listDepartamentos();
       <div class="col-12 col-md-6 col-lg-6 col-xl-6">
         <div class="card">
           <div class="card-header">
-            <span class="align-middle text-primary fw-bold"><i class="bi bi-gender-ambiguous"></i> Generos</span>
+            <span class="align-middle text-primary fw-bold"><i class="bi bi-dpad"></i> Roles</span>
           </div>
           <div class="card-body" style="height: 33vh; max-height: 33vh; overflow-y: auto;">
             <table class="table table-hover" style="width: 100%;" id="tableRol">
@@ -243,17 +245,17 @@ $listarDepartamentos = $configuracion->listDepartamentos();
               <tbody>
                 <tr>
                   <?php
-                  if (empty($listarGeneros) != 1) {
-                    foreach ($listarGeneros as $key => $value) {
+                  if (empty($listarRoles) != 1) {
+                    foreach ($listarRoles as $key => $value) {
                   ?>
-                      <td class="text-center"><?php echo $value['idGenero'] ?></td>
+                      <td class="text-center"><?php echo $value['idRol'] ?></td>
                       <td class="text-center"><?php echo $value['nombre'] ?></td>
                       <td class="text-center"><?php echo $value['estado'] === 1 ? "Activo" : "Inactivo" ?></td>
                       <td class="text-center">
-                        <button class="btn btn-outline-primary btn-sm" id="btn_info_genero" value="<?php echo $value['idGenero'] ?>">
+                        <button class="btn btn-outline-primary btn-sm" id="btn_info_rol" value="<?php echo $value['idRol'] ?>">
                           <i class="bi bi-info-square" style="pointer-events: none;"></i>
                         </button>
-                        <button class="btn btn-outline-primary btn-sm" id="btn_edit_genero" value="<?php echo $value['idGenero'] ?>">
+                        <button class="btn btn-outline-primary btn-sm" id="btn_edit_rol" value="<?php echo $value['idRol'] ?>">
                           <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
                         </button>
                       </td>
@@ -274,7 +276,7 @@ $listarDepartamentos = $configuracion->listDepartamentos();
           </div>
           <div class="card-footer p-0 m-0">
             <div class="d-grid">
-              <div class="btn btn-primary rounded-0" id="btn_insert_genero">Insertar Genero</div>
+              <div class="btn btn-primary rounded-0" id="btn_insert_rol">Insertar Rol</div>
             </div>
           </div>
         </div>

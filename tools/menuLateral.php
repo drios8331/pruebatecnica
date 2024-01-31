@@ -34,5 +34,5 @@ echo "   <a href='../../home/view/home.php' class='list-group-item list-group-it
 echo "   <a href='../../empleados/view/empleados.php' class='list-group-item list-group-item-action list-group-item-primary $empleados' aria-current='$stateEmpleados'> <i class='bi bi-people-fill'></i> Empleados</a>";
 echo "   <a href='../../configuracion/view/configuracion.php' class='list-group-item list-group-item-action list-group-item-primary $configuracion' aria-current='$stateConfiguracion'> <i class='bi bi-gear-fill'></i> Configuracion</a>";
 echo "   <a href='../../gastos/view/gastos.php' class='list-group-item list-group-item-action list-group-item-primary $gastos' aria-current='$stateGastos'> <i class='bi bi-cash-coin'></i> Gastos</a>";
-echo "   <a href='../../sesion/view/usuarios.php' class='list-group-item list-group-item-action list-group-item-primary $usuarios' aria-current='$stateUsuarios'> <i class='bi bi-person-badge'></i> Usuarios</a>";
+echo "   <a href='../../usuarios/view/usuarios.php' class='list-group-item list-group-item-action list-group-item-primary $usuarios' aria-current='$stateUsuarios'> <i class='bi bi-person-badge'></i> Usuarios</a>";
 echo '  </div>';

@@ -1,10 +1,12 @@
 <?php
 require '../../configuracion/Model/ModelConfiguracion.php';
+require '../Model/ModelGastos.php';
 
 $configuracion = new Configuracion();
+$gastos = new Gastos();
 
 $listarDepartamentos = $configuracion->listDepartamentos();
-
+$listarGastos = $gastos->listarGastos();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,9 +121,10 @@ $listarDepartamentos = $configuracion->listDepartamentos();
               <thead>
                 <tr>
                   <th class="text-center">id</th>
+                  <th class="text-center">Concepto</th>
                   <th class="text-center">Departamento</th>
-                  <th class="text-center">Nombres</th>
-                  <th class="text-center">Apellidos</th>
+                  <th class="text-center">Gasto</th>
+                  <th class="text-center">Año</th>
                   <th class="text-center">Estado</th>
                   <th class="text-center">Accion</th>
                 </tr>
@@ -129,19 +132,20 @@ $listarDepartamentos = $configuracion->listDepartamentos();
               <tbody>
                 <tr>
                   <?php
-                  if ($listarEmpleados != null) {
-                    foreach ($listarEmpleados as $key => $value) {
+                  if ($listarGastos != null) {
+                    foreach ($listarGastos as $key => $value) {
                   ?>
-                      <td class="text-center"><?php echo $value['idEmpleados'] ?></td>
-                      <td class="text-center"><?php echo $value['documento'] ?></td>
-                      <td class="text-center"><?php echo $value['nombres'] ?></td>
-                      <td class="text-center"><?php echo $value['apellidos'] ?></td>
+                      <td class="text-center"><?php echo $value['idGastos'] ?></td>
+                      <td class="text-center"><?php echo $value['idConcepto'] ?></td>
+                      <td class="text-center"><?php echo $value['departamento_id'] ?></td>
+                      <td class="text-center"><?php echo $value['gastos'] ?></td>
+                      <td class="text-center"><?php echo $value['año'] ?></td>
                       <td class="text-center"><?php echo $value['estado'] ?></td>
                       <td class="text-center">
-                        <button class="btn btn-outline-primary" id="btn_info_empleado" value="<?php echo $value['idEmpleados'] ?>">
+                        <button class="btn btn-outline-primary" id="btn_info_gasto" value="<?php echo $value['idGastos'] ?>">
                           <i class="bi bi-info-square" style="pointer-events: none;"></i>
                         </button>
-                        <button class="btn btn-outline-primary" id="btn_edit_empleado" value="<?php echo $value['idEmpleados'] ?>">
+                        <button class="btn btn-outline-primary" id="btn_edit_gasto" value="<?php echo $value['idGastos'] ?>">
                           <i class="bi bi-pencil-square" style="pointer-events: none;"></i>
                         </button>
                       </td>
