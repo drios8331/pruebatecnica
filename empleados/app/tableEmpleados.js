@@ -1,6 +1,5 @@
-
 new DataTable('#tableEmpleados',{
-    paging: false,
+    paging: true,
     scrollCollapse: true,
-    scrollY: '44vh'
+    scrollY: '47vh'
 });

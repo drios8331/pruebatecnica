@@ -1,5 +1,5 @@
 new DataTable('#tableUsuarios',{
-    paging: false,
+    paging: true,
     scrollCollapse: true,
     scrollY: '80vh'
 });

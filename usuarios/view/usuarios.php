@@ -127,7 +127,7 @@ $listarRoles = $configuracion->listRoles();
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-8 col-xl-8 h-100">
-                <div class="card" style="height: 88vh; max-height: 88vh; overflow-y: auto;">
+                <div class="card" style="max-height: 75vh; overflow-y: auto;">
                     <div class="card-header bg-primary">
                         <span class="align-middle text-light fw-bold"><i class="bi bi-list-columns-reverse"></i> Lista de Empleados</span>
                     </div>

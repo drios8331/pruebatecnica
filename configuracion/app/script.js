@@ -113,7 +113,7 @@ $(function () {
     $('#btn_insert_concepto').on('click', function (e) {
         if (e.target.id === 'btn_insert_concepto') {
             $.post(
-                '../controller/ctrlModalInsertConcepto.php',{},
+                '../controller/ctrlModalInsertConcepto.php', {},
                 function (response) {
                     $("#respuesta").html(response);
                 }
@@ -122,47 +122,48 @@ $(function () {
     })
 
     $(document).on('click', function (e) {
-        if (e.target.id === 'btn_insert_concepto_ok') {
+        if (e.target.id === "btn_insert_concepto_ok") {
             const concepto = $("#concepto").val();
             $.post(
-                '../controller/ctrlModalInsertConcepto.php',{
-                    concepto: concepto,
+                '../controller/ctrlInsertConcepto.php',
+                {
+                    concepto: concepto
                 }, function (response) {
                     $("#respuesta").html(response);
                 }
             )
-        } else if(e.target.id === 'btn_edit_concepto') {
-            const id = $("#idConcepto").val();
+        } else if (e.target.id === 'btn_edit_concepto') {
+            const id = e.target.value;
             const concepto = $("#concepto").val();
             $.post(
-                '../controller/ctrlModalUpdateConcepto.php',{
-                    id: id,
-                    concepto: concepto,
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlModalUpdateConcepto.php', {
+                id: id,
+                concepto: concepto,
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             )
-        } else if(e.target.id === 'btn_update_concepto') {
+        } else if (e.target.id === 'btn_update_concepto') {
             const id = $("#idConcepto").val();
             const concepto = $("#concepto").val();
+            const estado = $("#estadoConcepto").val();
             $.post(
-                '../controller/ctrlUpdateConcepto.php',{
-                    id: id,
-                    concepto: concepto,
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlUpdateConcepto.php', {
+                id: id,
+                concepto: concepto,
+                estado: estado,
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             )
-        } else if(e.target.id === 'btn_info_concepto') {
-            const id = $("#idConcepto").val();
-            const concepto = $("#concepto").val();
+        } else if (e.target.id === 'btn_info_concepto') {
+            const id = e.target.value;
             $.post(
-                '../controller/ctrlUpdateConcepto.php',{
-                    id: id,
-                    concepto: concepto,
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlModalInfoConcepto.php', {
+                id: id,
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             )
         }
     })
@@ -170,7 +171,7 @@ $(function () {
     $('#btn_insert_rol').on('click', function (e) {
         if (e.target.id === 'btn_insert_rol') {
             $.post(
-                '../controller/ctrlModalInsertRol.php',{},
+                '../controller/ctrlModalInsertRol.php', {},
                 function (response) {
                     $("#respuesta").html(response);
                 }
@@ -182,44 +183,44 @@ $(function () {
         if (e.target.id === 'btn_insert_rol_ok') {
             const rol = $("#rol").val();
             $.post(
-                '../controller/ctrlModalInsertRol.php',{
-                    rol: rol,
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlInsertRol.php', {
+                rol: rol,
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             )
-        } else if(e.target.id === 'btn_edit_rol') {
+        } else if (e.target.id === 'btn_edit_rol') {
             const id = e.target.value;
             const rol = $("#rol").val();
             $.post(
-                '../controller/ctrlModalUpdateRol.php',{
-                    id: id,
-                    rol: rol,
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlModalUpdateRol.php', {
+                id: id,
+                rol: rol,
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             )
-        } else if(e.target.id === 'btn_update_rol') {
+        } else if (e.target.id === 'btn_update_rol') {
             const id = $("#idRol").val();
             const rol = $("#rol").val();
+            const estado = $("#estadoRol").val();
             $.post(
-                '../controller/ctrlUpdateRol.php',{
-                    id: id,
-                    rol: rol,
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlUpdateRol.php', {
+                id: id,
+                rol: rol,
+                estado: estado
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             )
-        } else if(e.target.id === 'btn_info_rol') {
+        } else if (e.target.id === 'btn_info_rol') {
             const id = e.target.value;
-            const rol = $("#rol").val();
             $.post(
-                '../controller/ctrlUpdateRol.php',{
-                    id: id,
-                    rol: rol,
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlModalInfoRol.php', {
+                id: id,
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             )
         }
     })
