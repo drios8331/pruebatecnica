@@ -70,7 +70,7 @@ $listarGastos = $gastos->listarGastos();
           <div class="card-header bg-primary">
             <span class="align-middle text-light fw-bold"><i class='bi bi-door-open-fill'></i> Gastos</span>
           </div>
-          <div class="card-body">
+          <div class="card-body" style="overflow-y: auto;">
             <div class="form-floating mb-3">
               <select class="form-select" id="tipo" aria-label="Tipo">
                 <option value="1">Ingreso</option>
@@ -112,11 +112,11 @@ $listarGastos = $gastos->listarGastos();
         </div>
       </div>
       <div class="col-12 col-md-6 col-lg-8 col-xl-8">
-        <div class="card">
+        <div class="card" style="max-height: 78vh;">
           <div class="card-header bg-primary">
             <span class="align-middle text-light fw-bold"><i class="bi bi-list-columns-reverse"></i> Lista de Gastos</span>
           </div>
-          <div class="card-body">
+          <div class="card-body" style="overflow-y: auto;">
             <table id="tableGastos" class="table table-hover" style="width: 100%;">
               <thead>
                 <tr>
@@ -165,6 +165,7 @@ $listarGastos = $gastos->listarGastos();
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../../assets/js/menuLateral.js"></script>
   <script src="../../assets/js/navBar.js"></script>
+  <script src="../app/tableGastos.js"></script>
 </body>
 
 </html>
