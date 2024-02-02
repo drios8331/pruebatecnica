@@ -1,9 +1,12 @@
 <?php
-    require '../Model/ModelUsuarios.php';
+require '../Model/ModelUsuarios.php';
+require '../../configuracion/Model/ModelConfiguracion.php';
 
-    $usuarios = new Usuarios();
+$usuarios = new Usuarios();
+$configuracion = new Configuracion();
 
-    $listarUsuarios = $usuarios->listarUsuarios();
+$listarUsuarios = $usuarios->listarUsuarios();
+$listarRoles = $configuracion->listRoles();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,56 +65,59 @@
         <!-- inicio contenido -->
         <div class="row p-4">
             <div class="col-12 col-md-6 col-lg-4 col-xl-4">
-                <div class="card" style="height: 50vh; max-height: 50vh; overflow-y: auto;">
+                <div class="card">
                     <div class="card-header bg-primary">
                         <span class="align-middle text-light fw-bold"><i class="bi bi-people"></i> Usuarios</span>
                     </div>
-                    <div class="card-body">
-                            <div class="col-md mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
-                                    <label for="nombre">Nombre</label>
-                                </div>
+                    <div class="card-body" style="overflow-y: auto;">
+                        <div class="col-md mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                                <label for="nombre">Nombre</label>
                             </div>
-                            <div class="col-md mb-3">
-                                <div class="form-floating">
-                                    <input type="number" class="form-control" id="identificacion" placeholder="Identificacion">
-                                    <label for="identificacion">Identificacion</label>
-                                </div>
+                        </div>
+                        <div class="col-md mb-3">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="identificacion" placeholder="Identificacion">
+                                <label for="identificacion">Identificacion</label>
                             </div>
-                            <div class="col-md mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="usuario" placeholder="Usuario">
-                                    <label for="usuario">Usuario</label>
-                                </div>
+                        </div>
+                        <div class="col-md mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="usuario" placeholder="Usuario">
+                                <label for="usuario">Usuario</label>
                             </div>
-                            <div class="col-md mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="password" placeholder="Password">
-                                    <label for="password">Password</label>
-                                </div>
+                        </div>
+                        <div class="col-md mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="password" placeholder="Password">
+                                <label for="password">Password</label>
                             </div>
-                            <div class="col-md mb-3">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Email">
-                                    <label for="email">Email</label>
-                                </div>
+                        </div>
+                        <div class="col-md mb-3">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                <label for="email">Email</label>
                             </div>
-                            <div class="col-md mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="rol" aria-label="rol">
-                                        <?php foreach ($listarGeneros as $key => $value) {
-                                            $id = $value['idGenero'];
-                                            $genero = $value['nombre'];
-                                        ?>
-                                            <option value="<?php echo $id ?>"><?php echo $genero ?></option>
-                                        <?php
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select class="form-select" id="rol" aria-label="rol">
+                                    <?php
+                                    if ($listarRoles != null) {
+                                        foreach ($listarRoles as $key => $value) {
+                                            $id = $value['idRol'];
+                                            $rol = $value['nombre'];
+                                    ?>
+                                            <option value="<?php echo $id ?>"><?php echo $rol ?></option>
+                                    <?php
                                         }
-                                        ?>
-                                    </select>
-                                    <label for="rol">Rol</label>
-                                </div>
+                                    }
+                                    ?>
+                                </select>
+                                <label for="rol">Rol</label>
                             </div>
+                        </div>
                     </div>
                     <div class="card-footer p-0 m-0">
                         <div class="d-grid">
@@ -121,7 +127,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-8 col-xl-8 h-100">
-                <div class="card" style="height: 50vh; max-height: 50vh; overflow-y: auto;">
+                <div class="card" style="height: 88vh; max-height: 88vh; overflow-y: auto;">
                     <div class="card-header bg-primary">
                         <span class="align-middle text-light fw-bold"><i class="bi bi-list-columns-reverse"></i> Lista de Empleados</span>
                     </div>

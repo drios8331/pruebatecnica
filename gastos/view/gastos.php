@@ -112,7 +112,7 @@ $listarGastos = $gastos->listarGastos();
         </div>
       </div>
       <div class="col-12 col-md-6 col-lg-8 col-xl-8">
-        <div class="card" style="max-height: 78vh;">
+        <div class="card" style="max-height: 78vh; overflow-y: auto;">
           <div class="card-header bg-primary">
             <span class="align-middle text-light fw-bold"><i class="bi bi-list-columns-reverse"></i> Lista de Gastos</span>
           </div>
