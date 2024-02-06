@@ -61,10 +61,10 @@ $listarGastos = $gastos->listarGastos();
 
   <div class="content">
     <!-- navbar -->
-    <div id="navbar"></div>
+    <div id="navbar" class="shadow-lg"></div>
 
     <!-- inicio contenido -->
-    <div class="row p-4">
+    <div class="row m-4">
       <div class="col-12 col-md-6 col-lg-4 col-xl-4">
         <div class="card">
           <div class="card-header bg-primary">
@@ -79,12 +79,12 @@ $listarGastos = $gastos->listarGastos();
               <label for="tipo">Tipo</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="ingreso" placeholder="Ingreso">
-              <label for="ingreso">Ingreso</label>
+              <input type="number" class="form-control ingreso" id="ingreso" placeholder="Ingreso">
+              <label for="ingreso" id="ingresoLabel">Ingreso</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="gasto" placeholder="Gasto">
-              <label for="gasto">Gasto</label>
+              <input type="number" class="form-control gasto" id="gasto" placeholder="Gasto">
+              <label for="gasto" id="gastoLabel">Gasto</label>
             </div>
             <div class="form-floating mb-3">
               <input type="date" class="form-control" id="fecha" placeholder="Fecha de transaccion">
@@ -166,6 +166,7 @@ $listarGastos = $gastos->listarGastos();
   <script src="../../assets/js/menuLateral.js"></script>
   <script src="../../assets/js/navBar.js"></script>
   <script src="../app/tableGastos.js"></script>
+  <script src="../app/script.js"></script>
 </body>
 
 </html>

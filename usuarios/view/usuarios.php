@@ -60,10 +60,10 @@ $listarRoles = $configuracion->listRoles();
 
     <div class="content">
         <!-- navbar -->
-        <div id="navbar"></div>
+        <div id="navbar" class="shadow-lg"></div>
 
         <!-- inicio contenido -->
-        <div class="row p-4">
+        <div class="row m-4">
             <div class="col-12 col-md-6 col-lg-4 col-xl-4">
                 <div class="card">
                     <div class="card-header bg-primary">

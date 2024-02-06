@@ -63,10 +63,10 @@ $empleadosInferior = $empleados->listarEmpleadosInfSalario();
 
   <div class="content">
     <!-- navbar -->
-    <div id="navbar"></div>
+    <div id="navbar" class="shadow-lg"></div>
 
     <!-- Inicio Contenido -->
-    <div class="row p-4">
+    <div class="row m-4">
       <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
         <div class="card" style="height: 40vh; max-height: 40vh;">
           <div class="card-header bg-primary">
