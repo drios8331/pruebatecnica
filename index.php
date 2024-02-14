@@ -25,14 +25,13 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body class="scrolly m-0">
+<body class="scrolly h-100">
     <div id="respuesta"></div>
-    <div class="content" id="index">
-        <div class="row h-100">
-            <div class="col-xl-6 bg-primary m-0 p-0"></div>
-            <div class="col-xl-6 bg-secondary m-0 p-0">
-                <div class="card w-50 mx-5 mt-5">
-                    <div class="card-header card-title text-primary text-center">
+    <div class="content" id="index" style="background-image: url('./assets/images/fondo.jpg'); background-size: 100% 100%; background-repeat: no-repeat;">
+        <div class="row m-0 p-0">
+            <div class="col-xl-6 m-0 p-0 d-flex align-items-center" style="height: 100vh;">
+                <div class="card w-50" style="margin-left: 10%;">
+                    <div class="card-header text-primary text-center">
                         <h3>Inicio de Session</h3>
                     </div>
                     <div class="card-body">
@@ -54,15 +53,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-            var height = $(window).height();
-
-            $('#index').height(height);
-        });
-    </script>
-
 </body>
 
 </html>
