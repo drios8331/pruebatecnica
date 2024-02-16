@@ -193,6 +193,7 @@ $listarRoles = $configuracion->listRoles();
     <script src="../../assets/js/menuLateral.js"></script>
     <script src="../../assets/js/navBar.js"></script>
     <script src="../app/tableUsuarios.js"></script>
+    <script src="../app/script.js"></script>
 </body>
 
 </html>

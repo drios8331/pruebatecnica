@@ -1,6 +1,6 @@
 $(function () {
 
-    $("#insert_usuario").on("click", function () {
+    $("#insert_usuario").on("click", function (e) {
         if (e.target.id === 'insert_usuario') {
             const nombre = $("#nombre").val();
             const identificacion = $("#identificacion").val();
@@ -9,7 +9,7 @@ $(function () {
             const email = $("#email").val();
             const rol = $("#rol").val();
             $.post(
-                '../controller/ctrlInsertUsuarios.php', {
+                '../controller/ctrlCreateUsuarios.php', {
                 nombre: nombre,
                 identificacion: identificacion,
                 usuario: usuario,

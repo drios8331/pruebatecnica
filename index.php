@@ -30,23 +30,26 @@
     <div class="content" id="index" style="background-image: url('./assets/images/fondo.jpg'); background-size: 100% 100%; background-repeat: no-repeat;">
         <div class="row m-0 p-0">
             <div class="col-xl-6 m-0 p-0 d-flex align-items-center" style="height: 100vh;">
-                <div class="card w-50" style="margin-left: 10%;">
+                <div class="card" style="margin-left: 20%; width: 35%;">
                     <div class="card-header text-primary text-center">
                         <h3>Inicio de Session</h3>
                     </div>
+                    <div class="text-center">
+                        <img src="./assets/images/logo.png" class="card-img-top" alt="Logo" style="width: 40%;">
+                    </div>
                     <div class="card-body">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
+                            <input type="text" class="form-control" id="usuario" placeholder="Usuario">
+                            <label for="usuario">Usuario</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <label for="password">Password</label>
                         </div>
                     </div>
                     <div class="card-footer p-0 m-0">
                         <div class="d-greed">
-                            <button class="btn btn-primary w-100 rounded-top-0">Iniciar Sesion</button>
+                            <button class="btn btn-primary w-100 rounded-top-0" id="iniciar_sesion" onclick="window.location='./home/view/home.php'">Iniciar Sesion</button>
                         </div>
                     </div>
                 </div>
