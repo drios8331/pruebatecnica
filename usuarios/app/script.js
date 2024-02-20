@@ -23,5 +23,27 @@ $(function () {
         }
     });
 
+    $(document).on("click", function (e) {
+        if (e.target.id === "btn_info_usuario") {
+            id = e.target.value;
+            $.post(
+                '../controller/ctrlModalInfoUsuarios.php',{
+                    id: id
+                }, function (response) {
+                    $("#respuesta").html(response);
+                }
+            );
+        } else if(e.target.id === "btn_edit_usuario"){
+            id = e.target.value;
+            $.post(
+                '../controller/ctrlModalUpdateUsuarios.php',{
+                    id: id
+                }, function (response) {
+                    $("#respuesta").html(response);
+                }
+            );
+        }
+    })
+
 
 });
