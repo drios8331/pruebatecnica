@@ -27,20 +27,41 @@ $(function () {
         if (e.target.id === "btn_info_usuario") {
             id = e.target.value;
             $.post(
-                '../controller/ctrlModalInfoUsuarios.php',{
-                    id: id
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlModalInfoUsuarios.php', {
+                id: id
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             );
-        } else if(e.target.id === "btn_edit_usuario"){
+        } else if (e.target.id === "btn_edit_usuario") {
             id = e.target.value;
             $.post(
-                '../controller/ctrlModalUpdateUsuarios.php',{
-                    id: id
-                }, function (response) {
-                    $("#respuesta").html(response);
-                }
+                '../controller/ctrlModalUpdateUsuarios.php', {
+                id: id
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
+            );
+        } else if (e.target.id === "update_usuario") {
+            id = e.target.value;
+            identificacion = $("#identificacion").val();
+            nombre = $("#nombre").val();
+            usuario = $("#usuario").val();
+            email = $("#email").val();
+            rol = $("#rol").val();
+            newPassword = $("#newPassword").val();
+            $.post(
+                '../controller/ctrlUpdateUsuarios.php', {
+                id: id,
+                identificacion: identificacion,
+                nombre: nombre,
+                usuario: usuario,
+                email: email,
+                rol: rol,
+                newPassword: newPassword,
+            }, function (response) {
+                $("#respuesta").html(response);
+            }
             );
         }
     })
